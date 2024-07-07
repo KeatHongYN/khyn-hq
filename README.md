@@ -1,12 +1,13 @@
 # KHYN HQ
 
 ## Summary
-This project was started to facilitate the monitoring of GoGreen 2024, where teams collect recyclebles from HDB flats. It includes a real-time map interface to track completion status across sectors and blocks.
+This project was started to facilitate the monitoring of GoGreen 2024, where teams collect recyclables from HDB flats. It includes a real-time map interface to track completion status across sectors and blocks.
 
 ## Features
-- **Real-time Map Interface**: Displays sectors and blocks on an interactive map and interactive charts
-- **Completion Status**: Marks green or red based on completion status.
-- **Immediate Updates**: Updates interface instantly upon volunteer form submissions.
+- **Real-time Monitoring**: Keep track of events as they unfold with live updates.
+- **Interactive Mapping**: Visualize event locations and statuses using dynamic maps.
+- **Data Visualization**: Utilize charts to analyze trends and patterns in event data.
+- **User Engagement**: Enable volunteers to update event statuses directly via integrated forms.
 
 ## Tech Stack
 - **Next.js**: Frontend framework for React applications. [Next.js](https://nextjs.org/)
