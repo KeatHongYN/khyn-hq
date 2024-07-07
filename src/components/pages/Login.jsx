@@ -40,7 +40,7 @@ export default function LoginPage() {
       email,
       password
     });
-    console.log("clicked submit general form");
+
     if (error) {
       toast({
         variant: "destructive",
@@ -50,7 +50,6 @@ export default function LoginPage() {
       return;
     }
     toast({
-      variant: "success",
       title: "Login success",
       description: "Please do not abuse the system!"
     });

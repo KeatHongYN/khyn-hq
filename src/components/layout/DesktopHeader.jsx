@@ -5,10 +5,12 @@ import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { isEq } from "@/lib/utils";
 import { Button } from "@/components/shared/Button";
 import { ToastAction } from "@/components/shared/Toast";
+import { useToast } from "@/components/shared/Toast/use-toast";
 
 // import CommandMenu from "@/components/shared/CommandMenu";
 
 const DesktopHeader = () => {
+  const { toast } = useToast();
   const router = useRouter();
   const user = useUser();
   const supabaseClient = useSupabaseClient();
@@ -26,6 +28,10 @@ const DesktopHeader = () => {
       });
       return;
     }
+    toast({
+      title: "Logout success",
+      description: "See you again!"
+    });
     router.replace("/");
   };
 

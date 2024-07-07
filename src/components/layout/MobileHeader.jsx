@@ -5,7 +5,12 @@ import { Menu } from "lucide-react";
 import { useUser } from "@supabase/auth-helpers-react";
 import { Button } from "@/components/shared/Button";
 import { isEq } from "@/lib/utils";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/shared/Sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger
+} from "@/components/shared/Sheet";
 import { ToastAction } from "@/components/shared/Toast";
 
 const MobileHeader = () => {
@@ -39,7 +44,7 @@ const MobileHeader = () => {
             className={`text-slate-950 ${isActiveLink("/") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-sm`}
             href="/"
           >
-            Home
+            <SheetTitle>KHYN HQ</SheetTitle>
           </Link>
           <Link
             className={`text-slate-950 ${isActiveLink("/submit") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-sm`}
