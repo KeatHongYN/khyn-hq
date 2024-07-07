@@ -43,3 +43,22 @@
     --chart-5: 340 75% 55%;
   }
 }
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.new-row {
+  animation: fadeIn 1s forwards;
+}
+
+.linear-gradient {
+  background: linear-gradient(90deg, #41347a 0%, #5d55f2 5%, #ffb5f1 10%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

@@ -1,5 +1,17 @@
 /* eslint-disable react/no-string-refs */
 /* eslint-disable react/no-unknown-property */
+
+export const SECTOR_BAR_CHART_CONFIG = {
+  completed: {
+    label: "Completed",
+    color: "#22c55e"
+  },
+  notCompleted: {
+    label: "Not completed",
+    color: "#ef4444"
+  }
+};
+
 export const TABLE_COLUMN_ACTIONS = [
   {
     accessorKey: "action",
@@ -48,6 +60,11 @@ export const TABLE_COLUMN_ACTIONS = [
         </kbd>
       );
     }
+  },
+  {
+    accessorKey: "newRow",
+    visible: false,
+    header: ""
   }
 ];
 

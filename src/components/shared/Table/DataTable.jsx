@@ -18,7 +18,10 @@ export function DataTable({ columns, data }) {
   const table = useReactTable({
     data,
     columns,
-    getCoreRowModel: getCoreRowModel()
+    getCoreRowModel: getCoreRowModel(),
+    state: {
+      columnVisibility: { newRow: false }
+    }
   });
 
   return (
@@ -46,6 +49,7 @@ export function DataTable({ columns, data }) {
               <TableRow
                 key={row.id}
                 data-state={row.getIsSelected() && "selected"}
+                className={row.getValue("newRow") ? "new-row" : ""}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

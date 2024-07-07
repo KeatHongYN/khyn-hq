@@ -74,7 +74,6 @@ const Submit = () => {
     value: key
   }));
   const onSubmit = async ({ sector, blocks }) => {
-    console.log(blocks);
     let errorOccured = false;
 
     const formattedBlocksBySector = DF_GO_GREEN_2024[sector].blocks.map(
@@ -114,7 +113,7 @@ const Submit = () => {
 
     toast({
       title: "Update success",
-      description: "Data should be updated~!"
+      description: "Data is updated!"
     });
     router.replace("/");
   };
@@ -132,7 +131,6 @@ const Submit = () => {
   };
 
   const handleSectorChange = (value) => {
-    console.log(dbHDBDataCompleted);
     submitForm.setValue(
       "blocks",
       dbHDBDataCompleted.map((oneHDB) => oneHDB.block)
@@ -146,7 +144,7 @@ const Submit = () => {
 
   return (
     <MainLayout>
-      <div className="m-auto flex-1 h-full w-full max-w-screen-xl justify-between items-center px-6 sm:px-16">
+      <div className="m-auto h-full w-full max-w-screen-xl px-6 lg:px-24 flex flex-col justify-between items-center sm:px-16">
         <h1 className="text-xl font-bold mt-2 text-center">
           Submit data for GoGreen 2024
         </h1>
@@ -158,13 +156,13 @@ const Submit = () => {
           <Form {...submitForm}>
             <form
               onSubmit={submitForm.handleSubmit(onSubmit, onError)}
-              className="w-full flex flex-col justify-center items-center my-4"
+              className="flex flex-col justify-center items-center my-4 w-[220px] sm:w-[300px]"
             >
               <FormField
                 control={submitForm.control}
                 name="sector"
                 render={({ field }) => (
-                  <FormItem>
+                  <FormItem className="w-full">
                     <FormLabel>Sector</FormLabel>
                     <FormControl>
                       <Select
@@ -175,7 +173,7 @@ const Submit = () => {
                         defaultValue={field.value}
                         disabled={submitForm.formState.isSubmitting}
                       >
-                        <SelectTrigger className="w-[300px]">
+                        <SelectTrigger>
                           <SelectValue placeholder="Select sector" />
                         </SelectTrigger>
                         <SelectContent>
@@ -195,12 +193,12 @@ const Submit = () => {
                 )}
               />
 
-              <div className="space-y-4 mt-4 w-[300px]">
+              <div className="space-y-4 w-full mt-4">
                 <FormField
                   control={submitForm.control}
                   name="blocks"
                   render={() => (
-                    <FormItem>
+                    <FormItem className="w-full">
                       <FormLabel>Blocks</FormLabel>
                       {blockList.map((oneBlock, index) => (
                         <FormField
@@ -208,7 +206,7 @@ const Submit = () => {
                           control={submitForm.control}
                           name="blocks"
                           render={({ field }) => (
-                            <FormItem className="flex flex-row items-center space-x-3 space-y-0">
+                            <FormItem className="flex w-full flex-row items-center space-x-3 space-y-0">
                               <FormControl>
                                 <Checkbox
                                   disabled={submitForm.formState.isSubmitting}
@@ -246,7 +244,7 @@ const Submit = () => {
                   !submitForm.formState.isValid
                 }
                 loading={submitForm.formState.isSubmitting}
-                className="w-[300px] mt-8"
+                className="w-full mt-52"
                 type="submit"
               >
                 Submit data

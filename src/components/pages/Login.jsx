@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -23,6 +23,8 @@ const loginFormSchema = z.object({
 });
 
 export default function LoginPage() {
+  const user = useUser();
+  console.log(user);
   const { toast } = useToast();
   const supabaseClient = useSupabaseClient();
   const loginForm = useForm({
@@ -65,9 +67,18 @@ export default function LoginPage() {
       action: <ToastAction altText="Try again">Try again</ToastAction>
     });
   };
+
+  if (user) {
+    return (
+      <MainLayout title="Login" className="flex justify-center items-center">
+        <p className="font-semibold text-md">You are already logged in!</p>
+      </MainLayout>
+    );
+  }
+
   return (
     <MainLayout title="Login">
-      <div className="flex justify-center px-24 py-8">
+      <div className="flex justify-center px-6 lg:px-24 py-8">
         <div className="flex flex-col w-[380px] gap-3 translate-y-1/3">
           <span className="flex flex-col items-center gap-2 font-semibold">
             <svg
