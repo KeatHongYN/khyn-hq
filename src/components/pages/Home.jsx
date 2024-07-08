@@ -5,10 +5,11 @@ import dynamic from "next/dynamic";
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
-import { Bar, BarChart, CartesianGrid, XAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, XAxis, Pie, PieChart } from "recharts";
 import MainLayout from "@/components/layout/MainLayout";
 import { useToast } from "@/components/shared/Toast/use-toast";
 import {
+  BLKS_PER_SECTION_PIE_CHART_CONFIG,
   BLK_COORDINATES,
   DF_GO_GREEN_2024,
   SECTOR_A_COORDINATES,
@@ -33,9 +34,12 @@ import { Progress } from "@/components/shared/Progress";
 import { Skeleton } from "@/components/shared/Skeleton";
 import {
   ChartContainer,
+  ChartLegend,
+  ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent
 } from "@/components/shared/Chart";
+import { calculateStatistics } from "@/lib/utils";
 
 const Home = () => {
   const { toast } = useToast();
@@ -50,10 +54,11 @@ const Home = () => {
     completed: null,
     total: null
   });
+
   const [sectorBarChartData, setSectorBarChartData] = useState([]);
-  // const blockCoordinates = Object.keys(BLK_COORDINATES).map(
-  //   (blk) => BLK_COORDINATES[blk]
-  // );
+  const [blksPerSectorPieChartData, setBlksPerSectorPieChartData] = useState(
+    []
+  );
   const aggBlksCompletion = (data) => {
     const completed = [];
     const uncompleted = [];
@@ -217,6 +222,14 @@ const Home = () => {
       total: dbHDBData.length
     });
     setSectorBarChartData(sectorBarChartArr);
+
+    const blksPerSectorArr = Object.keys(DF_GO_GREEN_2024).map((key) => ({
+      noBlks: DF_GO_GREEN_2024[key].blocks.length,
+      label: key,
+      fill: BLKS_PER_SECTION_PIE_CHART_CONFIG[key].color
+    }));
+    console.log(blksPerSectorArr);
+    setBlksPerSectorPieChartData(blksPerSectorArr);
   }, [dbHDBData]);
 
   const Map = useMemo(
@@ -284,7 +297,7 @@ const Home = () => {
             <p className="text-slate-500 text-xs font-medium">Live Data</p>
           </span>
         </span>
-        <div className="grid gap-y-4 lg:gap-x-4 md:grid-cols-1 lg:grid-cols-3 mt-8">
+        <div className="grid gap-y-4  lg:gap-x-4 md:grid-cols-1 lg:grid-cols-3 mt-8">
           <span className="col-span-2">
             <Card>
               <CardHeader>
@@ -360,8 +373,8 @@ const Home = () => {
             </Card>
           </span>
 
-          <span className="col-span-1 space-y-4 flex flex-col w-full">
-            <Card>
+          <span className="col-span-2 md:col-span-1 space-y-4 justify-between flex flex-col w-full h-full">
+            <Card className="h-full">
               <CardHeader>
                 {loadingDbHDBData ? (
                   <Skeleton className="w-[100px] h-[20px] rounded-full" />
@@ -388,7 +401,7 @@ const Home = () => {
                 )}
               </CardContent>
             </Card>
-            <Card>
+            <Card  className="h-full">
               <CardHeader>
                 <CardTitle>Completion by Sector</CardTitle>
               </CardHeader>
@@ -409,6 +422,30 @@ const Home = () => {
                     <Bar dataKey="completed" fill="#22c55e" radius={4} />
                     <Bar dataKey="notCompleted" fill="#ef4444" radius={4} />
                   </BarChart>
+                </ChartContainer>
+              </CardContent>
+            </Card>
+            <Card  className="h-full">
+              <CardHeader>
+                <CardTitle>Timeline</CardTitle>
+                <CardDescription>Blks per sector</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ChartContainer
+                  config={BLKS_PER_SECTION_PIE_CHART_CONFIG}
+                  className="mx-auto aspect-square max-h-[300px]"
+                >
+                  <PieChart>
+                    <ChartTooltip
+                      cursor={false}
+                      content={<ChartTooltipContent hideLabel />}
+                    />
+                    <Pie data={blksPerSectorPieChartData} dataKey="noBlks" />
+                    <ChartLegend
+                      content={<ChartLegendContent nameKey="label" />}
+                      className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
+                    />
+                  </PieChart>
                 </ChartContainer>
               </CardContent>
             </Card>

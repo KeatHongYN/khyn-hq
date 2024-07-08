@@ -12,6 +12,44 @@ export const SECTOR_BAR_CHART_CONFIG = {
   }
 };
 
+export const BLKS_PER_SECTION_PIE_CHART_CONFIG = {
+  noBlks: {
+    label: "No of blks"
+  },
+  A1: {
+    label: "A1 (White sector)",
+    color: "#ebd834"
+  },
+  A2: {
+    label: "A2 (White sector)",
+    color: "#e2eb34"
+  },
+  A3: {
+    label: "A3 (White sector)",
+    color: "#c6eb34"
+  },
+  B1: {
+    label: "B1 (Red sector)",
+    color: "#eb3434"
+  },
+  B2: {
+    label: "B2 (Red sector)",
+    color: "#eb3434"
+  },
+  B3: {
+    label: "B3 (Red sector)",
+    color: "#eb7134"
+  },
+  C: {
+    label: "C (Blue Sector)",
+    color: "#34ebeb"
+  },
+  D: {
+    label: "D (Green Sector)",
+    color: "#34eb65"
+  }
+};
+
 export const TABLE_COLUMN_ACTIONS = [
   {
     accessorKey: "action",
