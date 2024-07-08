@@ -228,7 +228,6 @@ const Home = () => {
       label: key,
       fill: BLKS_PER_SECTION_PIE_CHART_CONFIG[key].color
     }));
-    console.log(blksPerSectorArr);
     setBlksPerSectorPieChartData(blksPerSectorArr);
   }, [dbHDBData]);
 

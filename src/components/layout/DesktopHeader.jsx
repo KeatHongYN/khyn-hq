@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { isEq } from "@/lib/utils";
@@ -6,6 +6,7 @@ import { Button } from "@/components/shared/Button";
 import { ToastAction } from "@/components/shared/Toast";
 import { useToast } from "@/components/shared/Toast/use-toast";
 import { createClient } from "@/lib/supabase/component";
+import AuthContext from "@/lib/AuthContext";
 
 // import CommandMenu from "@/components/shared/CommandMenu";
 
@@ -13,7 +14,7 @@ const DesktopHeader = () => {
   const { toast } = useToast();
   const router = useRouter();
   const supabaseClient = createClient();
-  const [user, setUser] = useState(null);
+  const { user } = useContext(AuthContext);
   const isActiveLink = (href) => isEq(router.pathname, href);
 
   const handleLogout = async () => {
@@ -34,13 +35,6 @@ const DesktopHeader = () => {
     });
     router.replace("/");
   };
-
-  useEffect(() => {
-    (async () => {
-      const getUser = await supabaseClient.auth.getUser();
-      setUser(getUser.data.user);
-    })();
-  }, []);
 
   return (
     <nav className="w-full h-full justify-between items-center hidden md:flex">

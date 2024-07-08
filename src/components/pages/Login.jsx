@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
   Form,
   FormControl,
@@ -17,6 +17,7 @@ import { ToastAction } from "@/components/shared/Toast";
 import { Button } from "@/components/shared/Button";
 import MainLayout from "@/components/layout/MainLayout";
 import { createClient } from "@/lib/supabase/component";
+import AuthContext from "@/lib/AuthContext";
 
 const loginFormSchema = z.object({
   email: z.string().email().min(1),
@@ -26,7 +27,7 @@ const loginFormSchema = z.object({
 export default function LoginPage() {
   const { toast } = useToast();
   const supabaseClient = createClient();
-  const [user, setUser] = useState(null);
+  const { user } = useContext(AuthContext);
   const loginForm = useForm({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -36,13 +37,6 @@ export default function LoginPage() {
     mode: "onBlur"
   });
   const router = useRouter();
-
-  useEffect(() => {
-    (async () => {
-      const getUser = await supabaseClient.auth.getUser();
-      setUser(getUser.data.user);
-    })();
-  }, []);
 
   const onSubmit = async ({ email, password }) => {
     const { data, error } = await supabaseClient.auth.signInWithPassword({

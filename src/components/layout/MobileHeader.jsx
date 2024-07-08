@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Menu } from "lucide-react";
@@ -12,12 +12,13 @@ import {
 } from "@/components/shared/Sheet";
 import { ToastAction } from "@/components/shared/Toast";
 import { createClient } from "@/lib/supabase/component";
+import AuthContext from "@/lib/AuthContext";
 
 const MobileHeader = () => {
   const router = useRouter();
   const isActiveLink = (href) => isEq(router.pathname, href);
   const supabaseClient = createClient();
-  const [user, setUser] = useState(null);
+  const { user } = useContext(AuthContext);
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
@@ -33,13 +34,6 @@ const MobileHeader = () => {
     }
     router.replace("/");
   };
-
-  useEffect(() => {
-    (async () => {
-      const getUser = await supabaseClient.auth.getUser();
-      setUser(getUser.data.user);
-    })();
-  }, []);
 
   return (
     <Sheet>
