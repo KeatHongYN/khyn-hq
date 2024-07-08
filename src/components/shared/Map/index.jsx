@@ -6,12 +6,7 @@ import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility
 
 export default function Map({ position, zoom, children, ...props }) {
   return (
-    <MapContainer
-      center={position}
-      zoom={zoom}
-      scrollWheelZoom={false}
-      {...props}
-    >
+    <MapContainer center={position} zoom={zoom} scrollWheelZoom {...props}>
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
