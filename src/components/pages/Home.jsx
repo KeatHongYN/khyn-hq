@@ -222,13 +222,11 @@ const Home = () => {
       total: dbHDBData.length
     });
     setSectorBarChartData(sectorBarChartArr);
-
     const blksPerSectorArr = Object.keys(DF_GO_GREEN_2024).map((key) => ({
       noBlks: DF_GO_GREEN_2024[key].blocks.length,
       label: key,
       fill: BLKS_PER_SECTION_PIE_CHART_CONFIG[key].color
     }));
-    console.log(blksPerSectorArr);
     setBlksPerSectorPieChartData(blksPerSectorArr);
   }, [dbHDBData]);
 
@@ -389,7 +387,7 @@ const Home = () => {
                   <Skeleton className="w-[100px] h-[20px] rounded-full" />
                 ) : (
                   <CardTitle className="linear-gradient font-mono font-bold">
-                    {parseInt(overallProgress?.completed || 0, 10)}%
+                    {parseInt(overallProgress?.pct || 0, 10)}%
                   </CardTitle>
                 )}
 
@@ -406,7 +404,7 @@ const Home = () => {
                 {loadingDbHDBData ? (
                   <Skeleton className="w-[300px] h-[20px] rounded-full" />
                 ) : (
-                  <Progress value={overallProgress?.completed || 0} />
+                  <Progress value={overallProgress?.pct || 0} />
                 )}
               </CardContent>
             </Card>
