@@ -46,6 +46,49 @@ export const FAQ_DATA = [
   }
 ];
 
+export const COMMAND_MENU_DATA = {
+  mainNav: [
+    {
+      title: "Home",
+      href: "/"
+    },
+    {
+      title: "Login",
+      href: "/login"
+    },
+    {
+      title: "FAQ",
+      href: "/faq"
+    },
+    {
+      title: "Terms and Condition",
+      href: "/terms-and-condition"
+    },
+    {
+      title: "Privacy Policy",
+      href: "/privacy-policy"
+    }
+  ],
+  faqNav: [
+    {
+      title: "FAQ",
+      items: (() => {
+        const newItemsArr = [];
+        FAQ_DATA.forEach((oneFAQSection) =>
+          oneFAQSection.contents.forEach((oneFAQ) =>
+            newItemsArr.push({
+              title: oneFAQ.qns,
+              href: `/faq#${oneFAQ.id}`,
+              items: []
+            })
+          )
+        );
+        return newItemsArr;
+      })()
+    }
+  ]
+};
+
 export const SECTOR_BAR_CHART_CONFIG = {
   completed: {
     label: "Completed",
@@ -116,19 +159,19 @@ export const TABLE_COLUMN_ACTIONS = [
     accessorKey: "user",
     header: "User",
     cell: ({ row }) => {
-      const id = row.getValue("user");
-      return <p className="text-xs font-semibold">{id}</p>;
+      const username = row.getValue("user");
+      return <p className="text-xs text-gray-700 font-semibold">{username}</p>;
     }
   },
   {
     accessorKey: "timestamp",
     header: "Timestamp",
     cell: ({ row }) => {
-      const id = row.getValue("timestamp");
+      const timestamp = row.getValue("timestamp");
       return (
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          {id}
-        </kbd>
+        <code className="font-mono text-gray-500 text-xs font-medium">
+          {timestamp}
+        </code>
       );
     }
   },
@@ -138,9 +181,9 @@ export const TABLE_COLUMN_ACTIONS = [
     cell: ({ row }) => {
       const id = row.getValue("id");
       return (
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
+        <code className="font-mono text-gray-500 text-xs font-medium">
           {id}
-        </kbd>
+        </code>
       );
     }
   },

@@ -328,7 +328,9 @@ const Home = () => {
               width={15}
               height={15}
             />
-            <p className="text-slate-500 text-xs font-medium">Live Data</p>
+            <code className="font-mono text-gray-500 text-xs font-medium">
+              Live Data
+            </code>
           </span>
         </span>
         <div className="grid gap-y-4  lg:gap-x-4 md:grid-cols-1 lg:grid-cols-3 mt-8">
@@ -337,7 +339,14 @@ const Home = () => {
               <CardHeader>
                 <CardTitle>Map View</CardTitle>
                 <CardDescription>
-                  Powered by OpenStreetMap and Leaflet.js
+                  Powered by{" "}
+                  <code className="font-mono text-gray-500 text-xs font-medium">
+                    OpenStreetMap
+                  </code>{" "}
+                  and{" "}
+                  <code className="font-mono text-gray-500 text-xs font-medium">
+                    Leaflet.js
+                  </code>
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -378,7 +387,7 @@ const Home = () => {
                 {loadingDbHDBData ? (
                   <Skeleton className="w-[100px] h-[20px] rounded-full" />
                 ) : (
-                  <CardTitle className="linear-gradient">
+                  <CardTitle className="linear-gradient font-mono font-bold">
                     {parseInt(overallProgress?.completed || 0, 10)}%
                   </CardTitle>
                 )}

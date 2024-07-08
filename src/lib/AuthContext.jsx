@@ -19,7 +19,6 @@ export const AuthProvider = ({ children }) => {
 
     // Subscribe to authentication state changes
     const { data } = supabaseClient.auth.onAuthStateChange((event, session) => {
-      console.log("Auth state change:", event, session);
       if (
         event === "SIGNED_IN" ||
         event === "USER_UPDATED" ||

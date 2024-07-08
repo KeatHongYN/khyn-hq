@@ -63,9 +63,17 @@ const MobileHeader = () => {
             FAQ
           </Link>
           {user ? (
-            <Button className="w-full mt-4" onClick={handleLogout}>
-              Logout
-            </Button>
+            <>
+              <Button className="w-full mt-4" onClick={handleLogout}>
+                Logout
+              </Button>
+              <div className="flex flex-col space-y-1 mt-4 text-center">
+                <p className="text-xs font-medium leading-none text-gray-600">
+                  {user.user_metadata.username}
+                </p>
+                <p className="text-xs leading-none text-gray-400">Volunteer</p>
+              </div>
+            </>
           ) : (
             <Button
               className="w-full mt-4"
