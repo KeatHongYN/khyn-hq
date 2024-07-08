@@ -2,6 +2,8 @@
 
 # KHYN HQ
 
+![Marketing](https://github.com/KeatHongYN/khyn-hq/blob/master/public/assets/marketing/marketing-github.png?raw=true)
+
 ## Summary
 This project was started to facilitate the monitoring of GoGreen 2024, where teams collect recyclables from HDB flats. It includes a real-time map interface to track completion status across sectors and blocks.
 
