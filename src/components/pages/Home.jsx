@@ -48,7 +48,7 @@ const Home = () => {
   const [actions, setActions] = useState([]);
   const [loadingActions, setLoadingActions] = useState(true);
   const [loadingDbHDBData, setLoadingDbHDBData] = useState(true);
-  const [mapState, setMapState] = useState(0); // 0 = hdb blocks, 1 = sectors overlay, 2 heatmap overlay
+  const [mapState, setMapState] = useState(0); // 0 = hdb blocks overlay, 1 = sectors overlay, 2 show both overlay
   const [overallProgress, setOverallProgress] = useState({
     pct: null,
     completed: null,
@@ -271,6 +271,31 @@ const Home = () => {
       </Polygon>
     ));
 
+  const generateSectorPolygons = () => (
+    <>
+      <Polygon positions={SECTOR_A_COORDINATES} color="yellow">
+        <Tooltip direction="bottom" offset={[0, 20]} opacity={1}>
+          Sector White (A)
+        </Tooltip>
+      </Polygon>
+      <Polygon positions={SECTOR_B_COORDINATES} color="red">
+        <Tooltip direction="bottom" offset={[0, 20]} opacity={1}>
+          Sector Red (B)
+        </Tooltip>
+      </Polygon>
+      <Polygon positions={SECTOR_C_COORDINATES} color="blue">
+        <Tooltip direction="bottom" offset={[0, 20]} opacity={1}>
+          Sector Blue (C)
+        </Tooltip>
+      </Polygon>
+      <Polygon positions={SECTOR_D_COORDINATES} color="green">
+        <Tooltip direction="bottom" offset={[0, 20]} opacity={1}>
+          Sector Green (D)
+        </Tooltip>
+      </Polygon>
+    </>
+  );
+
   const renderLatestActions = () => {
     if (loadingActions) {
       return <Loader2 className="h-6 w-6 animate-spin" />;
@@ -279,6 +304,16 @@ const Home = () => {
       return <p className="font-sm">No data available.</p>;
     }
     return <DataTable columns={TABLE_COLUMN_ACTIONS} data={actions} />;
+  };
+
+  const generateMap = () => {
+    if (mapState === 0) {
+      return generateHDBCompletedPolygons();
+    }
+    if (mapState === 1) {
+      return generateSectorPolygons();
+    }
+    return [generateHDBCompletedPolygons(), generateSectorPolygons()];
   };
 
   return (
@@ -312,48 +347,7 @@ const Home = () => {
                   position={[1.3785, 103.7403]}
                   zoom={16}
                 >
-                  {mapState === 0 ? (
-                    generateHDBCompletedPolygons()
-                  ) : (
-                    <>
-                      <Polygon positions={SECTOR_A_COORDINATES} color="yellow">
-                        <Tooltip
-                          direction="bottom"
-                          offset={[0, 20]}
-                          opacity={1}
-                        >
-                          Sector White (A)
-                        </Tooltip>
-                      </Polygon>
-                      <Polygon positions={SECTOR_B_COORDINATES} color="red">
-                        <Tooltip
-                          direction="bottom"
-                          offset={[0, 20]}
-                          opacity={1}
-                        >
-                          Sector Red (B)
-                        </Tooltip>
-                      </Polygon>
-                      <Polygon positions={SECTOR_C_COORDINATES} color="blue">
-                        <Tooltip
-                          direction="bottom"
-                          offset={[0, 20]}
-                          opacity={1}
-                        >
-                          Sector Blue (C)
-                        </Tooltip>
-                      </Polygon>
-                      <Polygon positions={SECTOR_D_COORDINATES} color="green">
-                        <Tooltip
-                          direction="bottom"
-                          offset={[0, 20]}
-                          opacity={1}
-                        >
-                          Sector Green (D)
-                        </Tooltip>
-                      </Polygon>
-                    </>
-                  )}
+                  {generateMap()}
                 </Map>
                 <div className="mt-4 space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row">
                   <Button
@@ -367,6 +361,12 @@ const Home = () => {
                     onClick={() => handleClickMapState(1)}
                   >
                     Show sectors
+                  </Button>
+                  <Button
+                    disabled={mapState === 2}
+                    onClick={() => handleClickMapState(2)}
+                  >
+                    Show hdb blocks and sectors
                   </Button>
                 </div>
               </CardContent>
@@ -401,7 +401,7 @@ const Home = () => {
                 )}
               </CardContent>
             </Card>
-            <Card  className="h-full">
+            <Card className="h-full">
               <CardHeader>
                 <CardTitle>Completion by Sector</CardTitle>
               </CardHeader>
@@ -425,7 +425,7 @@ const Home = () => {
                 </ChartContainer>
               </CardContent>
             </Card>
-            <Card  className="h-full">
+            <Card className="h-full">
               <CardHeader>
                 <CardTitle>Timeline</CardTitle>
                 <CardDescription>Blks per sector</CardDescription>

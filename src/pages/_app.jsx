@@ -4,7 +4,14 @@ import "@/styles/globals.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "next/router";
-import { ENVIRONMENT, SUPABASE_ANON_KEY, SUPABASE_URL } from "@/lib/config";
+import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from "firebase/app";
+import {
+  ENVIRONMENT,
+  FIREBASE_CONFIG,
+  SUPABASE_ANON_KEY,
+  SUPABASE_URL
+} from "@/lib/config";
 import Providers from "@/components/layout/Providers";
 
 export default function App({ Component, pageProps }) {
@@ -17,6 +24,9 @@ export default function App({ Component, pageProps }) {
     if (/defaultProps/.test(args[0])) return;
     error(...args);
   };
+
+  const app = initializeApp(FIREBASE_CONFIG);
+  const analytics = typeof window !== "undefined" ? getAnalytics(app) : null;
 
   useEffect(() => {
     NProgress.configure({ showSpinner: false });

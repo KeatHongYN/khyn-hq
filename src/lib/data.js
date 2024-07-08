@@ -1,6 +1,51 @@
 /* eslint-disable react/no-string-refs */
 /* eslint-disable react/no-unknown-property */
 
+import { KEI_LOK_GITHUB_URL, KHYN_IG_URL } from "./config";
+
+export const FAQ_DATA = [
+  {
+    heading: "General",
+    contents: [
+      {
+        id: "SHT8M",
+        qns: "What is the GoGreen 2024 project?",
+        ans: `The GoGreen 2024 project is a volunteering initiative by ${KHYN_IG_URL} where teams of volunteers collect trash from households in various HDB flats in Singapore. The project involves tracking the completion status of blocks in different sectors using a real-time, interactive map interface.`
+      },
+      {
+        id: "7KXF9",
+        qns: "How is the progress tracked in the GoGreen 2024 project?",
+        ans: "Selected volunteers will submit their progress through a Form in this website, indicating the blocks they have cleared. This data is then updated in real-time on a map interface, with completed blocks marked in green and incomplete blocks in red"
+      },
+      {
+        id: "9XX21",
+        qns: "How do I login to this site to submit data?",
+        ans: "A selected group of volunteers will be picked by the organising commitee to be provisoned an account."
+      }
+    ]
+  },
+  {
+    heading: "Others",
+    contents: [
+      {
+        id: "VBKC2",
+        qns: "What technologies are used in the GoGreen 2024 project?",
+        ans: "The project utilizes the following technologies: Next.js: (A React framework for server-side rendering and static site generation), Supabase: (A backend as a service providing real-time data synchronization and authentication) Leaflet.js: (A JavaScript library for interactive maps), Netlify: (A platform for deploying and hosting static websites and serverless functions)"
+      },
+      {
+        id: "S6F6E",
+        qns: "How does the real-time data synchronization work?",
+        ans: "The project uses Supabase’s real-time capabilities to listen for changes in the database. When a volunteer submits new data, the data is stored in Supabase, which then triggers updates in the front-end application to reflect the changes immediately."
+      },
+      {
+        id: "F2DME",
+        qns: "Who built this webite?",
+        ans: `This website is developed by ${KEI_LOK_GITHUB_URL} , a student studying Computer Science in Singapore.`
+      }
+    ]
+  }
+];
+
 export const SECTOR_BAR_CHART_CONFIG = {
   completed: {
     label: "Completed",
