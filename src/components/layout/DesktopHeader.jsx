@@ -71,54 +71,52 @@ const DesktopHeader = () => {
         <CommandMenu />
       </div>
 
-      <span>
-        {user ? (
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <User className="hover:bg-gray-100 p-2 cursor-pointer h-10 w-10 rounded-full text-gray-400" />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuLabel className="font-normal">
-                <div className="flex flex-col space-y-1">
-                  <p className="text-sm font-medium leading-none text-gray-600">
-                    {user.user_metadata.username}
-                  </p>
-                  <p className="text-xs leading-none text-gray-400">
-                    Volunteer
-                  </p>
-                </div>
-              </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem
-                  className="cursor-pointer"
-                  onClick={() => setShowHeader((curr) => !curr)}
-                >
-                  {showHeader ? "Hide Header" : "Show Header"}
-                  <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuGroup>
-                <DropdownMenuItem
-                  className="cursor-pointer"
-                  onClick={handleLogout}
-                >
-                  Logout
-                </DropdownMenuItem>
-              </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-            </DropdownMenuContent>
-          </DropdownMenu>
-        ) : (
+      {user ? (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <User className="hover:bg-gray-100 p-2 cursor-pointer h-10 w-10 rounded-full text-gray-400" />
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56" align="end" forceMount>
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col space-y-1">
+                <p className="text-sm font-medium leading-none text-gray-600">
+                  {user.user_metadata.username}
+                </p>
+                <p className="text-xs leading-none text-gray-400">Volunteer</p>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => setShowHeader((curr) => !curr)}
+              >
+                {showHeader ? "Hide Header" : "Show Header"}
+                <DropdownMenuShortcut>⌘M</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={handleLogout}
+              >
+                Logout
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+          </DropdownMenuContent>
+        </DropdownMenu>
+      ) : (
+        router.pathname !== "/login" && (
           <Button
             className="hidden md:flex"
             onClick={() => router.push("/login")}
           >
             Login
           </Button>
-        )}
-      </span>
+        )
+      )}
     </nav>
   );
 };
