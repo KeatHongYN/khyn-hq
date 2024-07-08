@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://dolcent.netlify.app/sitemap.xml
+Sitemap: https://khyn-hq.netlify.app/sitemap.xml
