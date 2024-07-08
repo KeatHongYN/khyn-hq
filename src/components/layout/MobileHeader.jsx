@@ -2,7 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Menu } from "lucide-react";
-import { useUser } from "@supabase/auth-helpers-react";
+import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { Button } from "@/components/shared/Button";
 import { isEq } from "@/lib/utils";
 import {
@@ -17,6 +17,7 @@ const MobileHeader = () => {
   const router = useRouter();
   const user = useUser();
   const isActiveLink = (href) => isEq(router.pathname, href);
+  const supabaseClient = useSupabaseClient();
 
   const handleLogout = async () => {
     const { error } = await supabaseClient.auth.signOut();
