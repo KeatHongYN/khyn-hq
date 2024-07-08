@@ -402,7 +402,7 @@ const Home = () => {
             </Card>
             <Card className="h-full">
               <CardHeader>
-                <CardTitle>Completion by Sector</CardTitle>
+                <CardDescription>Completion by Sector</CardDescription>
               </CardHeader>
               <CardContent>
                 <ChartContainer config={SECTOR_BAR_CHART_CONFIG}>
