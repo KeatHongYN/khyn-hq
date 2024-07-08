@@ -1,7 +1,6 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-plusplus */
 import { useRouter } from "next/router";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,20 +27,21 @@ import {
 } from "@/components/shared/Select";
 import { DF_GO_GREEN_2024 } from "@/lib/data";
 import { Checkbox } from "@/components/shared/Checkbox";
+import { createClient } from "@/lib/supabase/component";
 
 const submitFormSchema = z.object({
   sector: z.string().min(1),
   blocks: z.array(z.string()).optional()
 });
 
-const Submit = () => {
+const Submit = ({ user }) => {
   const { toast } = useToast();
   const router = useRouter();
-  const user = useUser();
   const [dbHDBDataCompleted, setDbHDBDataCompleted] = useState([]);
   const [loading, setLoading] = useState(true);
   const [blockList, setBlockList] = useState([]);
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = createClient();
+
   const submitForm = useForm({
     resolver: zodResolver(submitFormSchema),
     defaultValues: {

@@ -2,7 +2,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import dynamic from "next/dynamic";
-import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, XAxis, Pie, PieChart } from "recharts";
@@ -40,10 +39,11 @@ import {
   ChartTooltipContent
 } from "@/components/shared/Chart";
 import { calculateStatistics } from "@/lib/utils";
+import { createClient } from "@/lib/supabase/component";
 
 const Home = () => {
   const { toast } = useToast();
-  const supabaseClient = useSupabaseClient();
+  const supabaseClient = createClient();
   const [dbHDBData, setDbHDBData] = useState([]);
   const [actions, setActions] = useState([]);
   const [loadingActions, setLoadingActions] = useState(true);

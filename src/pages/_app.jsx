@@ -1,17 +1,11 @@
-import { useEffect, useState } from "react";
-import { createPagesBrowserClient } from "@supabase/auth-helpers-nextjs";
+import { useEffect } from "react";
 import "@/styles/globals.css";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import { useRouter } from "next/router";
 import { getAnalytics } from "firebase/analytics";
 import { initializeApp } from "firebase/app";
-import {
-  ENVIRONMENT,
-  FIREBASE_CONFIG,
-  SUPABASE_ANON_KEY,
-  SUPABASE_URL
-} from "@/lib/config";
+import { ENVIRONMENT, FIREBASE_CONFIG } from "@/lib/config";
 import Providers from "@/components/layout/Providers";
 
 export default function App({ Component, pageProps }) {
@@ -35,14 +29,8 @@ export default function App({ Component, pageProps }) {
     router.events.on("routeChangeError", () => NProgress.done());
   }, []);
 
-  const [supabaseClient] = useState(() =>
-    createPagesBrowserClient({
-      supabaseUrl: SUPABASE_URL,
-      supabaseKey: SUPABASE_ANON_KEY
-    })
-  );
   return (
-    <Providers supabaseClient={supabaseClient} pageProps={pageProps}>
+    <Providers>
       <Component {...pageProps} />
     </Providers>
   );
