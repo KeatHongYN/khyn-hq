@@ -101,28 +101,28 @@ export const SECTOR_BAR_CHART_CONFIG = {
 };
 
 export const BLKS_PER_SECTION_PIE_CHART_CONFIG = {
-  noBlks: {
-    label: "No of blks"
-  },
+  // noBlks: {
+  //   label: "No of blks"
+  // },
   A1: {
     label: "A1 (White sector)",
-    color: "#ebd834"
+    color: "#f7ca18"
   },
   A2: {
     label: "A2 (White sector)",
-    color: "#e2eb34"
+    color: "#f2d930"
   },
   A3: {
     label: "A3 (White sector)",
-    color: "#c6eb34"
+    color: "#f7e653"
   },
   B1: {
     label: "B1 (Red sector)",
-    color: "#eb3434"
+    color: "#e74c3c"
   },
   B2: {
     label: "B2 (Red sector)",
-    color: "#eb3434"
+    color: "#d63031"
   },
   B3: {
     label: "B3 (Red sector)",
@@ -130,7 +130,7 @@ export const BLKS_PER_SECTION_PIE_CHART_CONFIG = {
   },
   C: {
     label: "C (Blue Sector)",
-    color: "#34ebeb"
+    color: "#3498db"
   },
   D: {
     label: "D (Green Sector)",

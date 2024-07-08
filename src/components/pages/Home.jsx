@@ -228,6 +228,7 @@ const Home = () => {
       label: key,
       fill: BLKS_PER_SECTION_PIE_CHART_CONFIG[key].color
     }));
+    console.log(blksPerSectorArr);
     setBlksPerSectorPieChartData(blksPerSectorArr);
   }, [dbHDBData]);
 
@@ -447,7 +448,11 @@ const Home = () => {
                       cursor={false}
                       content={<ChartTooltipContent hideLabel />}
                     />
-                    <Pie data={blksPerSectorPieChartData} dataKey="noBlks" />
+                    <Pie
+                      data={blksPerSectorPieChartData}
+                      nameKey="label"
+                      dataKey="noBlks"
+                    />
                     <ChartLegend
                       content={<ChartLegendContent nameKey="label" />}
                       className="-translate-y-2 flex-wrap gap-2 [&>*]:basis-1/4 [&>*]:justify-center"
