@@ -80,7 +80,7 @@ export default function LoginPage() {
   }
 
   return (
-    <MainLayout title="Login">
+    <MainLayout title="Login - KHYN HQ">
       <div className="smh-container flex justify-center px-6 lg:px-24 py-16">
         <div
           className={`smh-card${
