@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import {
   Form,
   FormControl,
@@ -37,6 +37,7 @@ export default function LoginPage() {
     mode: "onBlur"
   });
   const router = useRouter();
+  const [smh, setSmh] = useState(false); // flag to trigger form shaking animation
 
   const onSubmit = async ({ email, password }) => {
     const { data, error } = await supabaseClient.auth.signInWithPassword({
@@ -45,6 +46,7 @@ export default function LoginPage() {
     });
 
     if (error) {
+      setSmh(true);
       toast({
         variant: "destructive",
         title: "Invalid username or password",
@@ -79,8 +81,13 @@ export default function LoginPage() {
 
   return (
     <MainLayout title="Login">
-      <div className="flex justify-center px-6 lg:px-24 py-8">
-        <div className="flex flex-col w-[380px] gap-3 translate-y-1/3">
+      <div className="smh-container flex justify-center px-6 lg:px-24 py-16">
+        <div
+          className={`smh-card${
+            smh ? "--animate" : ""
+          } flex flex-col w-[380px] gap-3`}
+          onAnimationEnd={() => setSmh(false)}
+        >
           <span className="flex flex-col items-center gap-2 font-semibold">
             <svg
               xmlns="http://www.w3.org/2000/svg"

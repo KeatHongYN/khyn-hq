@@ -62,3 +62,44 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+@keyframes smhAnimation {
+  0% {
+    transform: translateX(0);
+  }
+
+  12.5% {
+    transform: translateX(-6px) rotateY(-5deg);
+  }
+
+  37.5% {
+    transform: translateX(5px) rotateY(4deg);
+  }
+
+  62.5% {
+    transform: translateX(-3px) rotateY(-2deg);
+  }
+
+  87.5% {
+    transform: translateX(2px) rotateY(1deg);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.smh-container {
+  -webkit-perspective: 800px;
+  perspective: 800px;
+}
+
+.smh-card--animate {
+  animation: smhAnimation ease-in-out 400ms;
+  -webkit-animation-duration: 400ms;
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-name: smhAnimation;
+  -moz-animation-duration: 400ms;
+  -moz-animation-timing-function: ease-in-out;
+  -moz-animation-name: smhAnimation;
+}
