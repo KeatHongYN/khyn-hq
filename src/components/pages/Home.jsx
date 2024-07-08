@@ -427,7 +427,6 @@ const Home = () => {
             </Card>
             <Card className="h-full">
               <CardHeader>
-                <CardTitle>Timeline</CardTitle>
                 <CardDescription>Blks per sector</CardDescription>
               </CardHeader>
               <CardContent>
