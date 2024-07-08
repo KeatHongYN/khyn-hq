@@ -18,7 +18,7 @@ const SEO = ({ title = "KHYN HQ" }) => (
     />
     <meta
       property="og:image"
-      content="https://raw.githubusercontent.com/KeatHongYN/khyn-hq/main/public/assets/marketing/marketing-github.png"
+      content="https://khyn-hq.netlify.app/android-chrome-192x192.png"
     />
     <meta property="og:url" content="https://khyn-hq.netlify.app/" />
     <meta property="og:site_name" content="KHYN HQ" />
