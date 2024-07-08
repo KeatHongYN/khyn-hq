@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/d279fea6-7041-48e8-9f47-320b1721920d/deploy-status)](https://app.netlify.com/sites/khyn-hq/deploys)
+
 # KHYN HQ
 
 ## Summary
