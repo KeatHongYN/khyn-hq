@@ -209,6 +209,7 @@ const Submit = ({ user }) => {
                             <FormItem className="flex w-full flex-row items-center space-x-3 space-y-0">
                               <FormControl>
                                 <Checkbox
+                                  className="my-1"
                                   disabled={submitForm.formState.isSubmitting}
                                   checked={field.value?.includes(oneBlock)}
                                   onCheckedChange={(checked) =>
