@@ -43,21 +43,21 @@ const MobileHeader = () => {
       <SheetContent className="z-[99999]" side="right">
         <nav className="flex flex-col items-center justify-center">
           <Link
-            className={`text-slate-950 ${isActiveLink("/") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-sm`}
+            className={`text-slate-950 ${isActiveLink("/") ? "" : "opacity-60"} hover:underline mb-2 hover:opacity-80 text-md`}
             href="/"
           >
             <SheetTitle>KHYN HQ</SheetTitle>
           </Link>
           {user && (
             <Link
-              className={`text-slate-950 ${isActiveLink("/submit") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-sm`}
+              className={`text-slate-950 ${isActiveLink("/submit") ? "" : "opacity-60"} hover:underline mb-1 hover:opacity-80 text-md`}
               href="/submit"
             >
               Submit
             </Link>
           )}
           <Link
-            className={`text-slate-950 ${isActiveLink("/faq") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-sm`}
+            className={`text-slate-950 ${isActiveLink("/faq") ? "" : "opacity-60"} hover:underline hover:opacity-80 text-md`}
             href="/faq"
           >
             FAQ
